@@ -41,7 +41,90 @@ public:
 		year = old_human.year;
 	}
 
+	void Show_Human()
+	{
+		cout << "Firstname = " << firstname << endl;
+		cout << "Lastname = " << lastname << endl;
+		cout << "Surname = " << surname << endl;
+		cout << "Day = " << day << endl;
+		cout << "Month = " << month << endl;
+		cout << "Year = " << year << endl;
+	}
 
+	string Get_Firstname()
+	{
+		return firstname;
+	}
+
+	string Get_Lastname()
+	{
+		return lastname;
+	}
+
+	string Get_Surname()
+	{
+		return surname;
+	}
+
+	int Get_Day()
+	{
+		return day;
+	}
+
+	int Get_Month()
+	{
+		return month;
+	}
+
+	int Get_Year()
+	{
+		return year;
+	}
+
+	void Set_Firstname()
+	{
+		cout << "Enter firstname:\n";
+		cin >> firstname;
+	}
+
+	void Set_Lastname()
+	{
+		cout << "Enter lastname:\n";
+		cin >> lastname;
+	}
+
+	void Set_Surtname()
+	{
+		cout << "Enter surname:\n";
+		cin >> surname;
+	}
+
+	void Set_Day()
+	{
+		cout << "Enter day:\n";
+		cin >> day;
+	}
+
+	void Set_Month()
+	{
+		cout << "Enter month:\n";
+		cin >> month;
+	}
+
+	void Set_Year()
+	{
+		cout << "Enter year:\n";
+		cin >> year;
+	}
+
+	void Add_Person()
+	{
+		void(Human:: * p_methon[6])() = { &Human::Set_Firstname, &Human::Set_Lastname,  &Human::Set_Surtname, &Human::Set_Day, &Human::Set_Month, &Human::Set_Year };
+		for (int i = 0; i < 6; i++)
+		{
+			(this->*p_methon[i])();
+		}
+	}
 };
 
 class Apartment
@@ -56,7 +139,11 @@ class House
 
 int main()
 {
-
+	//Human person("FDSfs", "DFSDAF", "sfsdf", 123,123,123);
+	////person.Add_Person();
+	//person.Show_Human();
+	//Human person_1 = person;
+	//person.Show_Human();
 
 	return 0;
 }
