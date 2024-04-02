@@ -12,6 +12,7 @@ private:
 	int day;
 	int month;
 	int year;
+
 public:
 	Human()
 	{
@@ -134,6 +135,7 @@ private:
 	int number_apartament;
 	int floor;
 	int counter_people;
+
 public:
 	Apartment()
 	{
@@ -268,6 +270,7 @@ private:
 	int number_house;
 	int counter_apartments;
 	string street;
+
 public:
 	House()
 	{
