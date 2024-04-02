@@ -129,6 +129,65 @@ public:
 
 class Apartment
 {
+private:
+	Human* people;
+	int number_apartament;
+	int floor;
+	int counter_people;
+public:
+	Apartment()
+	{
+		people = nullptr;
+		int number_apartament = -1;
+		int floor = -1;
+		int counter_people = -1;
+	}
+	Apartment(Human* people, int number_apartament, int floor, int counter_people)
+	{
+		if (people != nullptr)
+		{
+			this->people = new Human[counter_people];
+			for (int i = 0; i < counter_people; i++)
+			{
+				this->people[i] = people[i];
+			}
+		}
+		else
+		{
+			people = nullptr;
+		}
+		
+		this->number_apartament = number_apartament;
+		this->floor = floor;
+		this->counter_people = counter_people;
+	}
+	Apartment(Apartment& old_apartment)
+	{
+		number_apartament = old_apartment.number_apartament;
+		floor = old_apartment.floor;
+		counter_people = old_apartment.counter_people;
+		if (old_apartment.people != nullptr)
+		{
+			people = new Human[counter_people];
+			for (int i = 0; i < counter_people; i++)
+			{
+				people[i] = old_apartment.people[i];
+			}
+		}
+		else
+		{
+			people = nullptr;
+		}
+
+	}
+	~Apartment()
+	{
+		if (people!=nullptr)
+		{
+			delete[] people;
+		}
+	}
+
 
 };
 
@@ -145,5 +204,14 @@ int main()
 	//Human person_1 = person;
 	//person.Show_Human();
 
+	Human person[3];
+	for (int i = 0; i < 3; i++)
+	{
+		person[i].Show_Human();
+	}
+
+	Apartment apartment_human(person, 10, 4, 3);
+
+	Apartment apartment_human_1 = apartment_human;
 	return 0;
 }
