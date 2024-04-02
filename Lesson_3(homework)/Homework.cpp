@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 
 using namespace std;
@@ -156,7 +156,7 @@ public:
 		{
 			people = nullptr;
 		}
-		
+
 		this->number_apartament = number_apartament;
 		this->floor = floor;
 		this->counter_people = counter_people;
@@ -182,13 +182,83 @@ public:
 	}
 	~Apartment()
 	{
-		if (people!=nullptr)
+		if (people != nullptr)
 		{
 			delete[] people;
 		}
 	}
 
+	void Show_Apartment()
+	{
+		for (int i = 0; i < counter_people; i++)
+		{
+			cout << "Human " << i + 1 << ":\n";
+			people[i].Show_Human();
+		}
 
+		cout << "Number apartament = " << number_apartament << endl;
+		cout << "Floor = " << floor << endl;
+		cout << "Counter people = " << counter_people << endl;
+	}
+
+	Human* Get_People()
+	{
+		return people;
+	}
+
+	int Get_Number_Apartament()
+	{
+		return number_apartament;
+	}
+
+	int Floor()
+	{
+		return floor;
+	}
+
+	int Get_Counter_People()
+	{
+		return counter_people;
+	}
+
+	void Set_People()
+	{
+		int counter_user;
+		cout << "Enter how many people in apartment:\n";
+		cin >> counter_user;
+
+		people = new Human[counter_user];
+		for (int i = 0; i < counter_user; i++)
+		{
+			people[i].Add_Person();
+		}
+	}
+
+	void Set_Number_Apartament()
+	{
+		cout << "Enter number apartament:\n";
+		cin >> number_apartament;
+	}
+
+	void Set_Floor()
+	{
+		cout << "Enter floor:\n";
+		cin >> floor;
+	}
+
+	void Set_Counter_People()
+	{
+		cout << "Enter how many people in apartment:\n";
+		cin >> counter_people;
+	}
+
+	void Add_Person()
+	{
+		Set_People();
+		Set_Number_Apartament();
+		Set_Floor();
+		Set_Counter_People();
+	}
 };
 
 class House
@@ -213,5 +283,12 @@ int main()
 	Apartment apartment_human(person, 10, 4, 3);
 
 	Apartment apartment_human_1 = apartment_human;
+
+	apartment_human_1.Show_Apartment();
+
+	apartment_human_1.Add_Person();
+	apartment_human_1.Show_Apartment();
+
+
 	return 0;
 }
