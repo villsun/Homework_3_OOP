@@ -154,7 +154,7 @@ public:
 		}
 		else
 		{
-			people = nullptr;
+			this->people = nullptr;
 		}
 
 		this->number_apartament = number_apartament;
@@ -168,7 +168,7 @@ public:
 		counter_people = old_apartment.counter_people;
 		if (old_apartment.people != nullptr)
 		{
-			people = new Human[counter_people];
+			people = new Human[old_apartment.counter_people];
 			for (int i = 0; i < counter_people; i++)
 			{
 				people[i] = old_apartment.people[i];
@@ -252,7 +252,7 @@ public:
 		cin >> counter_people;
 	}
 
-	void Add_Person()
+	void Add_Apartment()
 	{
 		Set_People();
 		Set_Number_Apartament();
@@ -263,7 +263,139 @@ public:
 
 class House
 {
+private:
+	Apartment* apartments;
+	int number_house;
+	int counter_apartments;
+	string street;
+public:
+	House()
+	{
+		apartments = nullptr;
+		number_house = -1;
+		counter_apartments = -1;
+		street = "None";
+	}
+	House(Apartment* apartments, int number_house, int counter_apartments, string street)
+	{
+		if (apartments != nullptr)
+		{
+			this->apartments = new Apartment[counter_apartments];
+			for (size_t i = 0; i < counter_apartments; i++)
+			{
+				this->apartments[i] = apartments[i];
+			}
+		}
+		else
+		{
+			this->apartments = nullptr;
+		}
 
+		this->number_house = number_house;
+		this->counter_apartments = counter_apartments;
+		this->street = street;
+	}
+
+	House(House& old_house)
+	{
+		if (old_house.apartments != nullptr)
+		{
+			this->apartments = new Apartment[old_house.counter_apartments];
+			for (size_t i = 0; i < counter_apartments; i++)
+			{
+				this->apartments[i] = old_house.apartments[i];
+			}
+		}
+		else
+		{
+			this->apartments = nullptr;
+		}
+
+		this->number_house = old_house.number_house;
+		this->counter_apartments = old_house.counter_apartments;
+		this->street = old_house.street;
+	}
+
+	~House()
+	{
+		if (apartments != nullptr)
+		{
+			delete[] apartments;
+		}
+	}
+
+	void Show_House()
+	{
+		for (size_t i = 0; i < counter_apartments; i++)
+		{
+			cout << "Apartment " << i + 1 << ":\n";
+			apartments[i].Show_Apartment();
+		}
+
+		cout << "Number house = " << number_house << endl;
+		cout << "Counter apartments = " << counter_apartments << endl;
+		cout << "Street = " << street << endl;
+	}
+
+
+	Apartment* Get_Apartment()
+	{
+		return apartments;
+	}
+
+	int Get_Number_House()
+	{
+		return number_house;
+	}
+
+	int Get_Counter_Apartments()
+	{
+		return counter_apartments;
+	}
+
+	string Get_Street()
+	{
+		return street;
+	}
+
+	void Set_Apartment()
+	{
+		int counter_user;
+		cout << "Enter how many apartments in house:\n";
+		cin >> counter_user;
+
+		apartments = new Apartment[counter_user];
+		for (int i = 0; i < counter_user; i++)
+		{
+			apartments[i].Add_Apartment();
+		}
+	}
+
+	void Set_Number_House()
+	{
+		cout << "Enter number house:\n";
+		cin >> number_house;
+	}
+
+	void Set_Counter_Apartments()
+	{
+		cout << "Enter how many apartments in house:\n";
+		cin >> counter_apartments;
+	}
+
+	void Set_Street()
+	{
+		cout << "Enter street:\n";
+		cin >> street;
+	}
+
+	void Add_House()
+	{
+		/*Set_Apartment();*/
+		Set_Number_House();
+		Set_Counter_Apartments();
+		Set_Street();
+	}
 };
 
 int main()
@@ -274,7 +406,7 @@ int main()
 	//Human person_1 = person;
 	//person.Show_Human();
 
-	Human person[3];
+	/*Human person[3];
 	for (int i = 0; i < 3; i++)
 	{
 		person[i].Show_Human();
@@ -286,9 +418,16 @@ int main()
 
 	apartment_human_1.Show_Apartment();
 
-	apartment_human_1.Add_Person();
-	apartment_human_1.Show_Apartment();
+	apartment_human_1.Add_Apartment()
+	apartment_human_1.Show_Apartment();*/
 
+	Apartment apartment[3];
+
+	House houses(apartment, 12, 3, "Hopa");
+	House houses_1 = houses;
+	houses_1.Show_House();
+	houses_1.Add_House();
+	houses_1.Show_House();
 
 	return 0;
 }
